@@ -30,12 +30,14 @@ h1.date__year-h1 {
 }
 .calendar__body {
   display: grid;
-  grid-template-columns: repeat(7,1fr);
+  grid-template-columns: repeat(7,auto);
   grid-template-rows: 45px repeat(6, auto);
   /* grid-gap: 70px; */
-  grid-gap: 75px 200px;
+  grid-gap: 20px;
   padding: 100px 40px;
   justify-items: center;
+  width:fit-content;
+  margin: 0 auto;
 }
 .weekday__name-span {
   text-transform: uppercase;
@@ -47,23 +49,25 @@ h1.date__year-h1 {
 }
 .weekday__tab {
   background: #52525254;
-  /* width: 100px; */
-  /* height: 250px; */
   min-height: 250px;
-  width: 100%;
+  min-width: 70px;
   height: 100%;
   border-radius: 40px;
   margin-bottom: 30px;
+  position: relative;
+  width: 100%;
+}
+.tab__event {
+  padding-left: 10px;
 }
 .weekday__number-span {
   font-size: 21px;
-  color: #808080;
   font-weight: 400;
-}
-.weekday__tab-number{
-  padding-top: 20px;
-  padding-left: 21px;
 }
 .weekday__column {
   width: 100%;
+}
+.info__tags {
+  margin-bottom: 25px;
+  margin-top: 10px;
 }
