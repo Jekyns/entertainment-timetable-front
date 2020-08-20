@@ -1,9 +1,15 @@
 import React from 'react';
 import logo from './logo.svg';
-import './App.css';
-import Calendar from './components/calendar/Calendar'
+import { connect } from 'react-redux';
 
-function App() {
+import './App.css';
+import Calendar from './components/calendar/Calendar';
+import { setEvents, addEvent } from './store/daysEvents/actions';
+
+function App(props) {
+  React.useEffect(() => {
+    props.setEvents();
+  }, []);
   return (
     <div className="App">
       <Calendar/>
@@ -11,4 +17,21 @@ function App() {
   );
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    user: state.daysEvents.daysEvents,
+  };
+};
+
+const mapDispatchToProps = {
+  setEvents,
+  addEvent,
+};
+
+const enchancer = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+);
+
+export default enchancer(App);
+
