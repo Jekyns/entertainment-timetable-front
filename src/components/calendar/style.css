@@ -29,14 +29,13 @@ h1.date__year-h1 {
   padding: 10px;
 }
 .calendar__body {
-  display: grid;
+  /* display: grid; */
   grid-template-columns: repeat(7,auto);
   grid-template-rows: 45px repeat(6, auto);
   /* grid-gap: 70px; */
   grid-gap: 20px;
   padding: 100px 40px;
   justify-items: center;
-  width:fit-content;
   margin: 0 auto;
 }
 .weekday__name-span {
@@ -50,10 +49,9 @@ h1.date__year-h1 {
 .weekday__tab {
   background: #52525254;
   min-height: 250px;
-  min-width: 70px;
+  /* min-width: 70px; */
   height: 100%;
   border-radius: 40px;
-  margin-bottom: 30px;
   position: relative;
   width: 100%;
 }
@@ -70,4 +68,10 @@ h1.date__year-h1 {
 .info__tags {
   margin-bottom: 25px;
   margin-top: 10px;
+}
+.calendar__tbody-tr-td {
+  padding: 10px 5px;
+}
+.calendar__body-table {
+  width: 100%;
 }

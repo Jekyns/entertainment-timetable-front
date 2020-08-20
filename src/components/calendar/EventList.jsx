@@ -12,6 +12,10 @@ function EventList(props) {
 
 const DayEvents = styled.div`
     height: 100%;
+    /* display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 0 20px; */
 `;
 
 export default EventList

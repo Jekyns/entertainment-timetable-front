@@ -22,8 +22,10 @@ function Calendar(props) {
         </div>
       </div>
       <div className="calendar__body">
+      <table class="calendar__body-table">
         <TableHead/>
         <TableBody/>
+      </table>
       </div>
     </div>
   )
