@@ -2,10 +2,21 @@ import React from 'react'
 import styled from 'styled-components'
 import DayEvent from './DayEvent';
 
+function showEvents(events = []) {
+  const dayEvents = [];
+  events.map((elem)=>{
+    dayEvents.push(
+      <DayEvent title={elem.title} bgImage={elem.bgImage} tags={elem.tags} />
+    )
+  })
+  return dayEvents;
+}
+
+
 function EventList(props) {
   return (
     <DayEvents>
-      <DayEvent title={props.title} bgImage={props.bgImage}/>
+      {showEvents(props.events)}
     </DayEvents>
   )
 }

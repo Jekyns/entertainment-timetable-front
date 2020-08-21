@@ -10,7 +10,7 @@ function DayEvent(props) {
           <span className="event__title-span">{props.title}</span>
         </div>
         {/* <img src={props.bgImage}/> */}
-        <TagList text="You" bgColor="#fff" color="#333" />
+        <TagList tags={props.tags} />
       </Event>
     </>
   )
@@ -25,6 +25,7 @@ const Event = styled.div`
   background: ${props => props.bgImage ? `url(${props.bgImage})` : 'transparent'};
   background-size: cover;
   border-radius: 25px;
+  min-height: 250px;
 `;
 
 

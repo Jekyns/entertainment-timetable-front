@@ -47,12 +47,12 @@ h1.date__year-h1 {
   padding-bottom: 40px;
 }
 .weekday__tab {
-  background: #52525254;
+  /* background: #52525254; */
   min-height: 250px;
   /* min-width: 70px; */
-  height: 100%;
-  border-radius: 40px;
-  position: relative;
+  /* height: 100%; */
+  /* border-radius: 40px; */
+  /* position: relative; */
   width: 100%;
 }
 .tab__event {
@@ -69,9 +69,8 @@ h1.date__year-h1 {
   margin-bottom: 25px;
   margin-top: 10px;
 }
-.calendar__tbody-tr-td {
-  padding: 10px 5px;
-}
+
 .calendar__body-table {
   width: 100%;
+  border-spacing: 10px 15px;
 }

@@ -1,15 +1,23 @@
 import React from 'react';
 import styled from 'styled-components';
 
+function showTags(tags = []) {
+  const eventTags = [];
+  tags.map((elem) => {
+    eventTags.push(
+      <Tag bgColor={elem.bgColor} color={elem.color}>
+        {elem.text}
+      </Tag>
+    )
+  })
+  return eventTags;
+}
+
+
 function TagList(props) {
   return (
     <div className="info__tags">
-      <Tag bgColor={props.bgColor} color={props.color}>
-        {props.text}
-      </Tag>
-      <Tag bgColor="#cb0b0e" color="#fff">
-        Dead
-      </Tag>
+      {showTags(props.tags)}
     </div>
   )
 }
@@ -21,7 +29,8 @@ const Tag = styled.div`
   display: inline-block;
   border-radius: 25px;
   text-transform: uppercase;
-  margin-right: 10px;
+  margin-right: 5px;
+  margin-bottom: 5px;
 `;
 
 export default TagList;

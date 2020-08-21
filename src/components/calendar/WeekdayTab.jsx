@@ -5,31 +5,24 @@ import EventList from './EventList';
 
 function WeekdayTab(props) {
   return (
-    <TableData className="calendar__tbody-tr-td" haveEvent={props.title}>
+    <TableData className="calendar__tbody-tr-td" haveEvent={props.events} expanded={props.expanded}>
       <div className="weekday__tab">
         <TabHead>
-          <DayNumber className="weekday__number-span" haveEvent={props.title}>
+          <DayNumber className="weekday__number-span" haveEvent={props.events}>
             1
       </DayNumber>
         </TabHead>
-        {/* {props.title ?
-        <div className="tab__info" >
-          <div className="info__title">
-            <span className="info__title-span">{props.title}</span>
-          </div>
-          <TagList text="You" bgColor="#fff" color="#333" />
-        </div> : null} */}
-        {props.title ?
-          <EventList title={props.title} bgImage={props.bgImage} />
-          : null
-        }
+        <EventList events={props.events} />
       </div>
     </TableData>
   )
 }
 
 const TableData = styled.td`
-  width:${props=>props.haveEvent ? "auto" : "20px"};
+  width:${props => (props.haveEvent || props.expanded) ? "auto" : "60px"};
+    background: #52525254;
+    border-radius: 40px;
+    position: relative;
 `;
 
 const TabHead = styled.div`

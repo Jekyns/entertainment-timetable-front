@@ -8,7 +8,7 @@ import { setEvents, addEvent } from './store/daysEvents/actions';
 
 function App(props) {
   React.useEffect(() => {
-    props.setEvents();
+    // props.setEvents();
   }, []);
   return (
     <div className="App">
@@ -19,7 +19,7 @@ function App(props) {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.daysEvents.daysEvents,
+    daysEvents: state.daysEvents.daysEvents,
   };
 };
 
