@@ -18,10 +18,11 @@ function WeekdayTab(props) {
   )
 }
 
-const TableData = styled.td`
-  width:${props => (props.haveEvent || props.expanded) ? "auto" : "60px"};
+const TableData = styled.div`
+  width:${props => (props.haveEvent || props.expanded) ? "100%" : "100%"};
     background: #52525254;
     border-radius: 40px;
+    margin: 0 auto;
     position: relative;
 `;
 

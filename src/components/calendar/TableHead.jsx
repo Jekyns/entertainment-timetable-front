@@ -3,17 +3,15 @@ import ColumnHead from './ColumnHead';
 
 function TableHead(props) {
   return (
-    <thead className="calendar__table-thead">
-    <tr className="calendar__thead-tr">
-        <th className="calendar__thead-tr-th"><ColumnHead weekday='Пн' /></th>
-        <th className="calendar__thead-tr-th"><ColumnHead weekday='Вт' /></th>
-        <th className="calendar__thead-tr-th"><ColumnHead weekday='Ср' /></th>
-        <th className="calendar__thead-tr-th"><ColumnHead weekday='Чт' /></th>
-        <th className="calendar__thead-tr-th"><ColumnHead weekday='Пт' /></th>
-        <th className="calendar__thead-tr-th"><ColumnHead weekday='Сб' /></th>
-        <th className="calendar__thead-tr-th"><ColumnHead weekday='Вс' /></th>
-    </tr>
-    </thead>
+    <>
+      <ColumnHead row="1" column="1" weekday='Пн' />
+      <ColumnHead row="1" column="2" weekday='Вт' />
+      <ColumnHead row="1" column="3" weekday='Ср' />
+      <ColumnHead row="1" column="4" weekday='Чт' />
+      <ColumnHead row="1" column="5" weekday='Пт' />
+      <ColumnHead row="1" column="6" weekday='Сб' />
+      <ColumnHead row="1" column="7" weekday='Вс' />
+    </>
   )
 }
 export default TableHead;
