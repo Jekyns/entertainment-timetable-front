@@ -15,7 +15,7 @@ function showEvents(events = []) {
 
 function EventList(props) {
   return (
-    <DayEvents>
+    <DayEvents elemCount={props.events ? props.events.length : 0}>
       {showEvents(props.events)}
     </DayEvents>
   )
@@ -23,10 +23,13 @@ function EventList(props) {
 
 const DayEvents = styled.div`
     height: 100%;
-    /* display: grid;
-    grid-template-rows: 1fr;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 0 20px; */
+    display: grid;
+    grid-gap: 15px;
+    grid-template-areas: ${props => 
+      props.elemCount > 1 ? 
+      `"a c"
+       "b c"` : `initial`
+    };
 `;
 
 export default EventList

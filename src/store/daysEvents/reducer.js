@@ -94,6 +94,69 @@ const initialState = [
           },
         ]
       },
+      {
+        title: "No game no life",
+        bgImage: "https://i.ytimg.com/vi/6CBp4qylX6I/maxresdefault.jpg",
+        tags: [
+          {
+            text: "Shiro",
+            bgColor: "SlateBlue",
+            color: "#fff"
+          },
+          {
+            text: "Sora",
+            bgColor: "#3ae6ca",
+            color: "#fff",
+          },
+          {
+            text: "Riku DOla",
+            bgColor: "Violet",
+            color: "Aquamarine",
+          },
+        ]
+      },
+      {
+        title: "Kamisama Hajimemashita",
+        bgImage: "https://pm1.narvii.com/6420/be212f0367b272ccd1c8c8a0a483478655b21762_hq.jpg",
+        tags: [
+          {
+            text: "Hi",
+            bgColor: "aqua",
+            color: "#fff"
+          },
+          {
+            text: "I am",
+            bgColor: "blue",
+            color: "#000",
+          },
+          {
+            text: "Godddddnessss",
+            bgColor: "Aquamarine",
+            color: "#000",
+          },
+        ]
+      },
+      {
+        title: "Kamisama Hajimemashita season 2",
+        bgImage: "https://i.pinimg.com/736x/80/b0/1c/80b01c2ed79afc7c484e81198f736696--the-princess-kamisama-kiss.jpg",
+        tags: [
+          {
+            text: "Hi",
+            bgColor: "aqua",
+            color: "#fff"
+          },
+          {
+            text: "I am",
+            bgColor: "blue",
+            color: "#000",
+          },
+          {
+            text: "god 2",
+            bgColor: "Aquamarine",
+            color: "#000",
+          },
+        ]
+      },
     ]
   },
   // {

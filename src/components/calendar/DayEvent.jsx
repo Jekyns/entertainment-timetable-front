@@ -26,6 +26,12 @@ const Event = styled.div`
   background-size: cover;
   border-radius: 25px;
   min-height: 250px;
+  &:last-child {
+      grid-area: c;
+    }
+    &:first-child {
+      grid-area: unset;
+    }
 `;
 
 
