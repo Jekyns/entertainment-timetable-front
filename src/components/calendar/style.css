@@ -77,3 +77,7 @@ h1.date__year-h1 {
   width: 100%;
   border-spacing: 10px 15px;
 }
+
+/* .tab__eventList>.tab__eventList-event:last-child {
+  background: #000;
+} */
