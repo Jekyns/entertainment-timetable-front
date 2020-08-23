@@ -27,8 +27,12 @@ const DayEvents = styled.div`
     grid-gap: 15px;
     grid-template-areas: ${props => 
       props.elemCount > 1 ? 
-      `"a c"
-       "b c"` : `initial`
+        props.elemCount % 2 === 0 ?
+        `"a b"
+        "d c"`
+        :`"a c"
+          "b c"` 
+      : `initial`
     };
 `;
 
