@@ -2,8 +2,7 @@ import React, { useEffect } from 'react';
 import './style.css';
 import '../../images/bg.jpg';
 import Weekday from './Weekday';
-import TableHead from './TableHead';
-import TableBody from './TableBody';
+import CalendarGrid from './CalendarGrid';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 
@@ -58,8 +57,7 @@ function Calendar(props) {
         </div>
       </div>
       <CalendarBody columns={columnsTemplate}>
-        <TableHead />
-        <TableBody />
+        <CalendarGrid />
       </CalendarBody>
     </div>
   )

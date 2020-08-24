@@ -1,10 +1,17 @@
 import React from 'react'
 import WeekdayTab from './WeekdayTab'
 import { connect } from 'react-redux';
+import ColumnHead from './ColumnHead';
 
 function showTabs(props) {
   const cells = [];
+  const weekDays = ['Пн','Вт','Ср','Чт','Пт','Сб','Вс'];
   for (let i = 0; i < 5; i++) {//rows
+    if(i === 0 ) {
+      weekDays.map((weekDay)=>{
+        cells.push(<ColumnHead weekday={weekDay} />);
+      })
+    }
     for (let j = 0; j < 7; j++) {//row cells(columns)
       const eventWeekadayTab = props.daysEvents.filter((elem) => {
         if ((i === elem.row) && (j === elem.column)) {
@@ -21,7 +28,7 @@ function showTabs(props) {
   return cells;
 }
 
-function TableBody(props) {
+function CalendarGrid(props) {
   return (
     <>
       {showTabs(props)}
@@ -40,4 +47,4 @@ const enchancer = connect(
   undefined,
 );
 
-export default enchancer(TableBody);
+export default enchancer(CalendarGrid);
