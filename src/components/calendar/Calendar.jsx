@@ -5,6 +5,7 @@ import Weekday from './Weekday';
 import CalendarGrid from './CalendarGrid';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
+import WeekDayTabModal from './WeekDayTabModal';
 
 
 function setColumnWidth(columnEvents) {
@@ -59,6 +60,7 @@ function Calendar(props) {
       <CalendarBody columns={columnsTemplate}>
         <CalendarGrid />
       </CalendarBody>
+      <WeekDayTabModal/>
     </div>
   )
 }

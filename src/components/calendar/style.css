@@ -1,33 +1,39 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&display=swap');
-
 .calendar__head {
   padding: 30px 60px;
 }
+
 .head__date {
   display: flex;
   font-family: 'Roboto', sans-serif;
   align-items: baseline;
 }
+
 h1.date__month-h1 {
   padding-right: 21px;
   text-transform: uppercase;
   font-weight: 700;
 }
+
 h1.date__year-h1 {
   font-weight: 400;
 }
+
 .head__description {
   margin-top: 5px;
 }
+
 .head__description-h2 {
   margin-top: 5px;
   font-weight: 400;
   font-size: 24px;
 }
+
 .test {
   background: #000;
   padding: 10px;
 }
+
 .calendar__body {
   display: grid;
   /* grid-template-columns: repeat(7,auto); */
@@ -40,14 +46,17 @@ h1.date__year-h1 {
   /* justify-items: center; */
   /* margin: 0 auto; */
 }
+
 .weekday__name-span {
   text-transform: uppercase;
   font-size: 18px;
 }
+
 .weekday__name {
   text-align: center;
   padding-bottom: 40px;
 }
+
 .weekday__tab {
   /* background: #52525254; */
   min-height: 250px;
@@ -58,16 +67,20 @@ h1.date__year-h1 {
   width: 100%;
   height: 100%;
 }
+
 .tab__event {
   padding-left: 10px;
 }
+
 .weekday__number-span {
   font-size: 21px;
   font-weight: 400;
 }
+
 .weekday__column {
   width: 100%;
 }
+
 .info__tags {
   margin-bottom: 25px;
   margin-top: 10px;
@@ -81,3 +94,140 @@ h1.date__year-h1 {
 /* .tab__eventList>.tab__eventList-event:last-child {
   background: #000;
 } */
+
+.calendar__wrapper {
+  width: 100%;
+  height: 100%;
+  background: #000000a2;
+  position: fixed;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.calendar__modal {
+  display: flex;
+  position: fixed;
+  flex-direction: column;
+  background: #fff;
+  color: #333;
+  height: 50%;
+  padding: 25px;
+  border-radius: 25px;
+}
+
+.tags__tag {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: fit-content;
+}
+
+.event__number {
+  font-size: 22px;
+}
+
+.modal__event {
+  border-bottom: 1px solid #000;
+  padding-bottom: 20px;
+}
+
+.modal__inputs {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+input.calendar__modal-input {
+  padding: 5px;
+  border-radius: 10px;
+}
+
+label.calendar__modal-label {
+  margin-bottom: 10px;
+}
+
+.modal__events {
+  overflow-y: scroll;
+  padding-right: 20px;
+  position: relative;
+  height: 100%;
+}
+
+.events__controls::after {
+  position: absolute;
+  content: "";
+  width: 25px;
+  height: 2px;
+  background: #000;
+  bottom: -10px;
+}
+
+.controls__rightSide {
+  display: flex;
+}
+
+.modal__controls {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.controls__button {
+  padding: 10px 20px;
+  color:#fff;
+  border: 0;
+  background: #fff;
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+.controls__save-btn {
+  background: rgb(23, 114, 218);
+}
+
+.controls__discard-btn {
+  background: #b44a4a;
+  margin-right: 10px;
+}
+
+.controls__addEvent-btn {
+  background: #588fcc;
+  display: block;
+  position: relative;
+  padding-left: 30px;
+}
+
+button.controls__addEvent-btn::after {
+  position: absolute;
+  content: "";
+  width: 15px;
+  height: 2px;
+  background: #fff;
+  /* right: 0; */
+  top: calc(50% - 1px);
+  left: 8px;
+}
+
+button.controls__addEvent-btn::before {
+  position: absolute;
+  transform: rotateZ(90deg);
+  content: "";
+  width: 15px;
+  height: 2px;
+  background: #fff;
+  /* right: 0; */
+  top: calc(50% - 1px);
+  left: 8px;
+}
+
+.controls__delete-btn {
+  background: #b44a4a;
+  padding: 5px 10px;
+}
+
+.controls__delete {
+  display: flex;
+  justify-content: flex-end;
+}
