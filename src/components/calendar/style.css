@@ -176,7 +176,7 @@ label.calendar__modal-label {
 
 .controls__button {
   padding: 10px 20px;
-  color:#fff;
+  color: #fff;
   border: 0;
   background: #fff;
   border-radius: 7px;
@@ -230,4 +230,64 @@ button.controls__addEvent-btn::before {
 .controls__delete {
   display: flex;
   justify-content: flex-end;
+}
+
+.modal__tags-titile {
+  font-size: 18px;
+  margin-right: 10px;
+}
+
+.tags__preview {
+  display: flex;
+  align-items: baseline;
+}
+
+.controls__addTag-btn {
+  background: rgb(23, 114, 218);
+  padding: 7px 15px;
+}
+
+.controls__addTag {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.plus-icon::after {
+  position: absolute;
+  content: "";
+  width: 15px;
+  height: 2px;
+  background: #fff;
+  top: calc(50% - 1px);
+  left: 8px;
+}
+
+.plus-icon::before {
+  position: absolute;
+  transform: rotateZ(90deg);
+  content: "";
+  width: 15px;
+  height: 2px;
+  background: #fff;
+  top: calc(50% - 1px);
+  left: 8px;
+}
+
+@keyframes shimmer {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.tag-span {
+  margin-right: 10px;
+}
+.tag-icon {
+  padding: 0 5px;
+  width: 12px;
+  height: 12px;
+  cursor: pointer;
 }
