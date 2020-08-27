@@ -18,7 +18,7 @@ function CreateEventsForm(props) {
   const showEvents = () => {
     const htmlEvents = [];
     events.map((elem, i) => {
-      htmlEvents.push(<CreateEvent key={i} count={i} {...elem} onChange={onChange} changeTag={changeTag} saveTag={saveTag} deleteTag={deleteTag} />)
+      htmlEvents.push(<CreateEvent key={`${elem.bgImage}${i}`} count={i} {...elem} onChange={onChange} changeTag={changeTag} saveTag={saveTag} deleteTag={deleteTag} />)
     })
     return htmlEvents;
   }
@@ -67,7 +67,6 @@ function CreateEventsForm(props) {
   // }
 
   const saveDay = () => {
-    console.log(props)
     props.setDay({
       row:props.row,
       column: props.column,
