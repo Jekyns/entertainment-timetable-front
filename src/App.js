@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import './App.css';
 import Calendar from './components/calendar/Calendar';
-import { setEvents, addEvent } from './store/daysEvents/actions';
+import { setEvents } from './store/daysEvents/actions';
 
 function App(props) {
   React.useEffect(() => {
@@ -24,8 +24,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-  setEvents,
-  addEvent,
+  setEvents
 };
 
 const enchancer = connect(

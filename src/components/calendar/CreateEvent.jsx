@@ -5,8 +5,7 @@ import TagList from './TagList';
 import CreateTag from './CreateTag';
 
 function CreateEvent(props) {
-  const [editableTab, setEditableTab] = React.useState(props.tags.length - 1);
-
+  const [editableTab, setEditableTab] = React.useState(props.tags.length-1);
   const editTab = (tabIndex) => {
     setEditableTab(tabIndex);
   }
@@ -48,7 +47,7 @@ function CreateEvent(props) {
         </label>
         <label className="calendar__modal-label">
           <span className="calendar__modal-label-span">Image (url): </span>
-          <input className="calendar__modal-input" value={props.imageUrl} onChange={onChange} name="imageUrl" />
+          <input className="calendar__modal-input" value={props.bgImage} onChange={onChange} name="bgImage" />
         </label>
       </div>
       <div className="modal__tags">

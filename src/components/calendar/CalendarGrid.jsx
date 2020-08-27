@@ -3,7 +3,7 @@ import WeekdayTab from './WeekdayTab'
 import { connect } from 'react-redux';
 import ColumnHead from './ColumnHead';
 
-function showTabs(props) {
+function showTabs({daysEvents, editDay}) {
   const cells = [];
   const weekDays = ['Пн','Вт','Ср','Чт','Пт','Сб','Вс'];
   for (let i = 0; i < 5; i++) {//rows
@@ -13,15 +13,15 @@ function showTabs(props) {
       })
     }
     for (let j = 0; j < 7; j++) {//row cells(columns)
-      const eventWeekadayTab = props.daysEvents.filter((elem) => {
+      const eventWeekadayTab = daysEvents.filter((elem) => {
         if ((i === elem.row) && (j === elem.column)) {
-          cells.push(<WeekdayTab events={elem.events} />);
+          cells.push(<WeekdayTab key={`${elem.title}${i}${j}`} events={elem.events} row={i} column={j} editDay={editDay}/>);
           return false
         }
         return true
       })
-      if(eventWeekadayTab.length === props.daysEvents.length){
-        cells.push(<WeekdayTab />);
+      if(eventWeekadayTab.length === daysEvents.length){
+        cells.push(<WeekdayTab key={`${i}${j}`} row={i} column={j} editDay={editDay}/>);
       }
     }
   }

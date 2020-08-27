@@ -539,13 +539,30 @@ const deleteUser = (state) => {
   };
 };
 
+const setDay = (state, action) => {
+  const newDay = action.day;
+  let added = false;
+  const newDays = state.map((day) => {
+    if ((day.row === newDay.row) && (day.column === newDay.column)) {
+      added = true;
+      return newDay;
+    } else {
+      return day;
+    }
+  })
+  if(!added)
+    newDays.push(newDay);
+  return newDays;
+}
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case daysEvents.SET_EVENTS:
       return {
         ...initialState
       };
-
+    case daysEvents.SET_DAY:
+      return setDay(state, action);
     case daysEvents.DELETE_USER:
       return deleteUser(state, action);
     default:

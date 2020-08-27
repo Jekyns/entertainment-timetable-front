@@ -19,6 +19,7 @@ function setColumnWidth(columnEvents) {
 
 function Calendar(props) {
   const [columnsTemplate, setColumnsTemplate] = React.useState('');
+  const [dayForEdit, setDayForEdit] = React.useState({});
 
   function calculateColumns() {
     const maxEventsInColumn = {};
@@ -36,6 +37,15 @@ function Calendar(props) {
       columnsTemplateCss += setColumnWidth(maxEventsInColumn[i]);
     }
     setColumnsTemplate(columnsTemplateCss);
+  }
+
+  const editDay = (day) => {
+    setDayForEdit(day);
+  }
+
+  const closeModal = () => {
+    calculateColumns();
+    setDayForEdit({});
   }
 
   React.useEffect(()=>{
@@ -58,9 +68,9 @@ function Calendar(props) {
         </div>
       </div>
       <CalendarBody columns={columnsTemplate}>
-        <CalendarGrid />
+        <CalendarGrid editDay={editDay}/>
       </CalendarBody>
-      <WeekDayTabModal/>
+      <WeekDayTabModal dayForEdit={dayForEdit} closeModal={closeModal} />
     </div>
   )
 }

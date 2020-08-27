@@ -1,9 +1,9 @@
 import { daysEvents } from '../actionTypes';
 
-export function addEvent(event) {
+export function setDay(day) {
   return {
-    type: daysEvents.SET_USER,
-    event: event,
+    type: daysEvents.SET_DAY,
+    day: day,
   };
 }
 export function deleteEvent(event) {

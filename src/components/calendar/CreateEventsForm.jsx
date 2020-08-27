@@ -1,17 +1,24 @@
 import React from 'react';
 import CreateEvent from './CreateEvent';
 import CreateTag from './CreateTag';
+import { setDay } from '../../store/daysEvents/actions';
+import { connect } from 'react-redux';
 
-function CreateEventsForm() {
+function CreateEventsForm(props) {
   const initTag = { text: '', bgColor: '', color: '' };
-  const initEvent = { title: '', imageUrl: '', tags: [initTag] };
-  const [events, setEvents] = React.useState([initEvent])
+  const initEvent = { title: '', bgImage: '', tags: [initTag] };
+  const [events, setEvents] = React.useState([initEvent]);
   // const [editableTab, setEditableTab] = React.useState(events[events.length].tags[events[events.length].tags[]]);
+  React.useEffect(()=>{
+    if(props.events){
+      setEvents(props.events);
+    }
+  },[props.events]);
 
   const showEvents = () => {
     const htmlEvents = [];
     events.map((elem, i) => {
-      htmlEvents.push(<CreateEvent count={i} {...elem} onChange={onChange} changeTag={changeTag} saveTag={saveTag} deleteTag={deleteTag} />)
+      htmlEvents.push(<CreateEvent key={i} count={i} {...elem} onChange={onChange} changeTag={changeTag} saveTag={saveTag} deleteTag={deleteTag} />)
     })
     return htmlEvents;
   }
@@ -20,7 +27,7 @@ function CreateEventsForm() {
     const { name, value } = e.target;
     const newEvents = [...events];
     newEvents[e.count][name] = value;
-    setEvents(newEvents)
+    setEvents(newEvents);
   }
 
   const changeTag = (e) => {
@@ -59,6 +66,15 @@ function CreateEventsForm() {
   //   setEvents(newEvents);
   // }
 
+  const saveDay = () => {
+    console.log(props)
+    props.setDay({
+      row:props.row,
+      column: props.column,
+      events: events,
+    });
+  }
+
   return (
     <>
       <div className="modal__events">
@@ -72,10 +88,10 @@ function CreateEventsForm() {
         </div>
         <div className="controls__rightSide">
           <div className="controls__discard">
-            <button className="controls__discard-btn controls__button">Отмена</button>
+            <button className="controls__discard-btn controls__button" onClick={props.closeModal}>Отмена</button>
           </div>
           <div className="controls__save">
-            <button className="controls__save-btn controls__button">Сохранить</button>
+            <button className="controls__save-btn controls__button" onClick={saveDay}>Сохранить</button>
           </div>
         </div>
       </div>
@@ -83,4 +99,14 @@ function CreateEventsForm() {
   );
 }
 
-export default CreateEventsForm;
+const mapDispatchToProps = {
+  setDay,
+};
+
+const enchancer = connect(
+  undefined,
+  mapDispatchToProps,
+);
+
+
+export default enchancer(CreateEventsForm);

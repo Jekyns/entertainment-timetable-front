@@ -291,3 +291,7 @@ button.controls__addEvent-btn::before {
   height: 12px;
   cursor: pointer;
 }
+.modal-close {
+  opacity: 0;
+  pointer-events: none;
+}

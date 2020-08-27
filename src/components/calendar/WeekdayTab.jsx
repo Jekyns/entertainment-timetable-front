@@ -3,16 +3,21 @@ import styled from 'styled-components';
 import TagList from './TagList';
 import EventList from './EventList';
 
-function WeekdayTab(props) {
+function WeekdayTab({events, expanded, row, column, editDay}) {
+
+  const onClick = () => {
+    editDay({ row, column, events});
+  }
+
   return (
-    <TableData className="calendar__tbody-tr-td" haveEvent={props.events} expanded={props.expanded}>
+    <TableData className="calendar__tbody-tr-td" haveEvent={events} expanded={expanded} onClick={onClick}>
       <div className="weekday__tab">
         <TabHead>
-          <DayNumber className="weekday__number-span" haveEvent={props.events}>
+          <DayNumber className="weekday__number-span" haveEvent={events}>
             1
-      </DayNumber>
+          </DayNumber>
         </TabHead>
-        <EventList events={props.events} />
+        <EventList events={events} />
       </div>
     </TableData>
   )
