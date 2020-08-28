@@ -11,14 +11,26 @@ function CreateEventsForm(props) {
   // const [editableTab, setEditableTab] = React.useState(events[events.length].tags[events[events.length].tags[]]);
   React.useEffect(()=>{
     if(props.events){
-      setEvents(props.events);
+      const incammingEvents = props.events;
+      const newEvents = incammingEvents.map((event)=>{
+        return {...event};
+      })
+      setEvents(newEvents);
     }
   },[props.events]);
 
   const showEvents = () => {
     const htmlEvents = [];
     events.map((elem, i) => {
-      htmlEvents.push(<CreateEvent key={`${elem.bgImage}${i}`} count={i} {...elem} onChange={onChange} changeTag={changeTag} saveTag={saveTag} deleteTag={deleteTag} />)
+      htmlEvents.push(
+      <CreateEvent
+        key={`${elem.bgImage}${i}`}
+        count={i} {...elem}
+        onChange={onChange}
+        changeTag={changeTag}
+        saveTag={saveTag}
+        deleteTag={deleteTag}
+      />)
     })
     return htmlEvents;
   }
@@ -74,6 +86,11 @@ function CreateEventsForm(props) {
     });
   }
 
+  const closeModal = () => {
+    setEvents([initEvent]);
+    props.closeModal();
+  }
+
   return (
     <>
       <div className="modal__events">
@@ -87,7 +104,7 @@ function CreateEventsForm(props) {
         </div>
         <div className="controls__rightSide">
           <div className="controls__discard">
-            <button className="controls__discard-btn controls__button" onClick={props.closeModal}>Отмена</button>
+            <button className="controls__discard-btn controls__button" onClick={closeModal}>Отмена</button>
           </div>
           <div className="controls__save">
             <button className="controls__save-btn controls__button" onClick={saveDay}>Сохранить</button>
