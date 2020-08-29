@@ -115,6 +115,7 @@ h1.date__year-h1 {
   height: 50%;
   padding: 25px;
   border-radius: 25px;
+  overflow: scroll;
 }
 
 .tags__tag {
@@ -296,4 +297,16 @@ button.controls__addEvent-btn::before {
 .modal-close {
   opacity: 0;
   pointer-events: none;
+}
+
+.modal__preview {
+  color:#fff;
+}
+.modal__body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.preview__tabs {
+  color:#000;
+  display: flex;
 }

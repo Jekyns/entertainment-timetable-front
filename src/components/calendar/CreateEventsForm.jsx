@@ -1,15 +1,26 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import CreateEvent from './CreateEvent';
 import CreateTag from './CreateTag';
 import { setDay } from '../../store/daysEvents/actions';
 import { connect } from 'react-redux';
+import DayPreview from './DayPreview';
 
 function CreateEventsForm(props) {
   const initTag = { text: '', bgColor: '', color: '' };
   const initEvent = { title: '', bgImage: '', tags: [initTag] };
-  const [events, setEvents] = React.useState([initEvent]);
+  const [events, setEvents] = useState([initEvent]);
+  const [previewDay, setPreviewDay] = useState({});
   // const [editableTab, setEditableTab] = React.useState(events[events.length].tags[events[events.length].tags[]]);
-  React.useEffect(()=>{
+
+  useEffect(() => {
+    const {daysEvents, row, column} = props;
+    const newPreviewDay =  daysEvents.filter((day)=>{
+       return ((day.row === row) && (day.column === column));
+     })
+     setPreviewDay(newPreviewDay[0]);
+   }, [props.row,props.column])
+
+  useEffect(()=>{
     if(props.events){
       const incammingEvents = props.events;
       const newEvents = incammingEvents.map((event)=>{
@@ -18,6 +29,7 @@ function CreateEventsForm(props) {
       setEvents(newEvents);
     }
   },[props.events]);
+
 
   const showEvents = () => {
     const htmlEvents = [];
@@ -92,7 +104,8 @@ function CreateEventsForm(props) {
   }
 
   return (
-    <>
+    <div className="modal__body">
+    <div className="modal__edit">
       <div className="modal__events">
         {showEvents()}
       </div>
@@ -111,16 +124,26 @@ function CreateEventsForm(props) {
           </div>
         </div>
       </div>
-    </>
+      </div>
+      <div className="modal__preview">
+        <DayPreview events={events}/>
+      </div>
+    </div>
   );
 }
+
+const mapStateToProps = (state) => {
+  return {
+    daysEvents: state.daysEvents,
+  };
+};
 
 const mapDispatchToProps = {
   setDay,
 };
 
 const enchancer = connect(
-  undefined,
+  mapStateToProps,
   mapDispatchToProps,
 );
 

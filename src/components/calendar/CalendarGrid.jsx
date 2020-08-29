@@ -2,6 +2,7 @@ import React from 'react'
 import WeekdayTab from './WeekdayTab'
 import { connect } from 'react-redux';
 import ColumnHead from './ColumnHead';
+import styled from 'styled-components';
 
 function showTabs({daysEvents, editDay}) {
   const cells = [];
@@ -29,12 +30,15 @@ function showTabs({daysEvents, editDay}) {
 }
 
 function CalendarGrid(props) {
+  const {columnsTemplate} = props;
   return (
-    <>
+    <CalendarBody columnsTemplate={columnsTemplate}>
       {showTabs(props)}
-    </>
+    </CalendarBody>
   )
 }
+
+
 
 const mapStateToProps = (state) => {
   return {
@@ -45,6 +49,14 @@ const mapStateToProps = (state) => {
 const enchancer = connect(
   mapStateToProps,
   undefined,
-);
+  );
+  
+  export default enchancer(CalendarGrid);
 
-export default enchancer(CalendarGrid);
+
+const CalendarBody = styled.div`
+  display: grid;
+  padding: 100px 40px;
+  grid-template-columns: ${props => props.columnsTemplate};
+  grid-gap: 20px 10px;
+`;

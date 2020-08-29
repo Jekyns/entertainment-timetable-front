@@ -67,20 +67,12 @@ function Calendar(props) {
           <h2 className="head__description-h2">Новые фильмы в кино</h2>
         </div>
       </div>
-      <CalendarBody columns={columnsTemplate}>
-        <CalendarGrid editDay={editDay}/>
-      </CalendarBody>
+      <CalendarGrid editDay={editDay} columnsTemplate={columnsTemplate}/>
       <WeekDayTabModal dayForEdit={dayForEdit} closeModal={closeModal} />
     </div>
   )
 }
 
-const CalendarBody = styled.div`
-  display: grid;
-  padding: 100px 40px;
-  grid-template-columns: ${props => props.columns};
-  grid-gap: 20px 10px;
-`;
 
 
 const mapStateToProps = (state) => {

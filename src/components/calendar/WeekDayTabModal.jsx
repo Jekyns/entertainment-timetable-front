@@ -1,18 +1,31 @@
-import React from 'react';
+import React,{useEffect, useState} from 'react';
+import {connect} from 'react-redux';
 import CreateEventsForm from './CreateEventsForm';
 
 
 
-function WeekDayTabModal({ dayForEdit,closeModal }) {
+function WeekDayTabModal({ dayForEdit, closeModal, daysEvents }) {
   return (
     <div className={`calendar__wrapper ${dayForEdit.row >= 0 ? 'modal-open' : 'modal-close'}`}>
       <div className="calendar__modal">
         <div className="modal__head">
           <p className="modal__head-p">Add Events</p>
         </div>
-        <CreateEventsForm {...dayForEdit} closeModal={closeModal}/>
+        <CreateEventsForm {...dayForEdit} closeModal={closeModal} />
       </div>
     </div>
   )
 }
-export default WeekDayTabModal;
+
+const mapStateToProps = (state) => {
+  return {
+    daysEvents: state.daysEvents,
+  };
+};
+
+const enchancer = connect(
+  mapStateToProps,
+  undefined,
+);
+
+export default enchancer(WeekDayTabModal);
