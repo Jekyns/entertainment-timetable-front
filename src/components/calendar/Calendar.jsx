@@ -6,52 +6,24 @@ import CalendarGrid from './CalendarGrid';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import WeekDayTabModal from './WeekDayTabModal';
-
-
-function setColumnWidth(columnEvents) {
-  if (columnEvents) {
-    return `${columnEvents.length > 1 ? 2 : 1}fr `;
-  }
-  return '70px ';
-}
-
-
+import { calculateColumns } from '../../store/daysGrid/actions';
 
 function Calendar(props) {
-  const [columnsTemplate, setColumnsTemplate] = React.useState('');
   const [dayForEdit, setDayForEdit] = React.useState({});
-
-  function calculateColumns() {
-    const maxEventsInColumn = {};
-    props.daysEvents.map((elem) => {
-      if (maxEventsInColumn[elem.column]) {
-        if (elem.events.length > maxEventsInColumn[elem.column].length)
-          maxEventsInColumn[elem.column] = elem.events;
-      }
-      else {
-        maxEventsInColumn[elem.column] = elem.events;
-      }
-    })
-    let columnsTemplateCss = '';
-    for (let i = 0; i < 7; i++) {//i - count colums
-      columnsTemplateCss += setColumnWidth(maxEventsInColumn[i]);
-    }
-    setColumnsTemplate(columnsTemplateCss);
-  }
 
   const editDay = (day) => {
     setDayForEdit(day);
   }
 
   const closeModal = () => {
-    calculateColumns();
+    props.calculateColumns('columnsTemplate', props.days);
     setDayForEdit({});
   }
 
-  React.useEffect(()=>{
-    calculateColumns();
-  },[])
-
+  React.useEffect(() => {
+    props.calculateColumns('columnsTemplate', props.days);
+  }, [])
+  const { days } = props;
   return (
     <div className="calendar">
       <div className="calendar__head">
@@ -67,7 +39,7 @@ function Calendar(props) {
           <h2 className="head__description-h2">Новые фильмы в кино</h2>
         </div>
       </div>
-      <CalendarGrid editDay={editDay} columnsTemplate={columnsTemplate}/>
+      <CalendarGrid days={days} editDay={editDay} columnsTemplate={props.columnsTemplate} />
       <WeekDayTabModal dayForEdit={dayForEdit} closeModal={closeModal} />
     </div>
   )
@@ -77,13 +49,19 @@ function Calendar(props) {
 
 const mapStateToProps = (state) => {
   return {
-    daysEvents: state.daysEvents,
+    days: state.daysGrid.days,
+    columnsTemplate: state.daysGrid.columnsTemplate,
   };
 };
 
+const mapDispatchToProps = {
+  calculateColumns,
+};
+
+
 const enchancer = connect(
   mapStateToProps,
-  undefined,
+  mapDispatchToProps,
 );
 
 export default enchancer(Calendar);

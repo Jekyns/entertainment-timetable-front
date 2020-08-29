@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import './App.css';
 import Calendar from './components/calendar/Calendar';
-import { setEvents } from './store/daysEvents/actions';
+import { setEvents } from './store/daysGrid/actions';
 
 function App(props) {
   React.useEffect(() => {
@@ -19,7 +19,7 @@ function App(props) {
 
 const mapStateToProps = (state) => {
   return {
-    daysEvents: state.daysEvents.daysEvents,
+    daysGrid: state.daysGrid.daysGrid,
   };
 };
 

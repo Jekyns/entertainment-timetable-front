@@ -4,7 +4,7 @@ import CreateEventsForm from './CreateEventsForm';
 
 
 
-function WeekDayTabModal({ dayForEdit, closeModal, daysEvents }) {
+function WeekDayTabModal({ dayForEdit, closeModal }) {
   return (
     <div className={`calendar__wrapper ${dayForEdit.row >= 0 ? 'modal-open' : 'modal-close'}`}>
       <div className="calendar__modal">
@@ -19,7 +19,7 @@ function WeekDayTabModal({ dayForEdit, closeModal, daysEvents }) {
 
 const mapStateToProps = (state) => {
   return {
-    daysEvents: state.daysEvents,
+    daysGrid: state.daysGrid,
   };
 };
 

@@ -1,12 +1,30 @@
-import React,{useState} from 'react'
+import React,{useState, useEffect} from 'react'
 import WeekdayTab from './WeekdayTab';
 import CalendarGrid from './CalendarGrid';
 import {connect} from 'react-redux';
+import { calculateColumns } from '../../store/daysGrid/actions';
 
 function DayPreview(props) {
-  const {events} = props;
+
+
+  const {day, days} = props;
+  const [newDays, setNewDays] = useState(days);
   const [viewDay, setView] = useState(true);
-  const [columnsTemplate, setColumnsTemplate] = React.useState('');
+
+
+
+  useEffect(() => {
+    const {row,column} = props.day;
+    const newDays = props.days.filter((day)=>{
+      if(day.row===row && day.column===column){
+        return false
+      }
+      return true;
+    })
+    newDays.push(props.day);
+    setNewDays(newDays);
+    props.calculateColumns('previewColumnsTemplate', newDays);
+  }, [props.day.events])
 
   const setDayView = () => {
     setView(true);
@@ -14,32 +32,6 @@ function DayPreview(props) {
 
   const setGlobalView = () => {
     setView(false);
-    calculateColumns();
-  }
-
-  function setColumnWidth(columnEvents) {
-    if (columnEvents) {
-      return `${columnEvents.length > 1 ? 2 : 1}fr `;
-    }
-    return '70px ';
-  }
-
-  function calculateColumns() {
-    const maxEventsInColumn = {};
-    props.daysEvents.map((elem) => {
-      if (maxEventsInColumn[elem.column]) {
-        if (elem.events.length > maxEventsInColumn[elem.column].length)
-          maxEventsInColumn[elem.column] = elem.events;
-      }
-      else {
-        maxEventsInColumn[elem.column] = elem.events;
-      }
-    })
-    let columnsTemplateCss = '';
-    for (let i = 0; i < 7; i++) {//i - count colums
-      columnsTemplateCss += setColumnWidth(maxEventsInColumn[i]);
-    }
-    setColumnsTemplate(columnsTemplateCss);
   }
   return (
     <div className="modal__preview">
@@ -52,8 +44,8 @@ function DayPreview(props) {
         </div>
       </div>
       {viewDay ? 
-      <WeekdayTab events={events}/>:
-      <CalendarGrid columnsTemplate={columnsTemplate}/>
+      <WeekdayTab events={day.events}/>:
+      <CalendarGrid days={newDays} columnsTemplate={props.columnsTemplate}/>
       
     }
     </div>
@@ -62,14 +54,19 @@ function DayPreview(props) {
 
 const mapStateToProps = (state) => {
   return {
-    daysEvents: state.daysEvents,
+    days: state.daysGrid.days,
+    columnsTemplate: state.daysGrid.previewColumnsTemplate,
   };
+};
+
+const mapDispatchToProps = {
+  calculateColumns,
 };
 
 
 const enchancer = connect(
   mapStateToProps,
-  undefined,
+  mapDispatchToProps,
 );
 
 export default enchancer(DayPreview)

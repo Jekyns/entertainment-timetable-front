@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import CreateEvent from './CreateEvent';
 import CreateTag from './CreateTag';
-import { setDay } from '../../store/daysEvents/actions';
+import { setDay } from '../../store/daysGrid/actions';
 import { connect } from 'react-redux';
 import DayPreview from './DayPreview';
 
@@ -13,8 +13,8 @@ function CreateEventsForm(props) {
   // const [editableTab, setEditableTab] = React.useState(events[events.length].tags[events[events.length].tags[]]);
 
   useEffect(() => {
-    const {daysEvents, row, column} = props;
-    const newPreviewDay =  daysEvents.filter((day)=>{
+    const {daysGrid, row, column} = props;
+    const newPreviewDay =  daysGrid.days.filter((day)=>{
        return ((day.row === row) && (day.column === column));
      })
      setPreviewDay(newPreviewDay[0]);
@@ -102,7 +102,7 @@ function CreateEventsForm(props) {
     setEvents([initEvent]);
     props.closeModal();
   }
-
+  const {row, column} = props;
   return (
     <div className="modal__body">
     <div className="modal__edit">
@@ -126,7 +126,7 @@ function CreateEventsForm(props) {
       </div>
       </div>
       <div className="modal__preview">
-        <DayPreview events={events}/>
+        <DayPreview day={{row, column,events}}/>
       </div>
     </div>
   );
@@ -134,7 +134,7 @@ function CreateEventsForm(props) {
 
 const mapStateToProps = (state) => {
   return {
-    daysEvents: state.daysEvents,
+    daysGrid: state.daysGrid,
   };
 };
 

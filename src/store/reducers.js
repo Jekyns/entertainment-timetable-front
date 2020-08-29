@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 
-import daysEvents from './daysEvents/reducer';
+import daysGrid from './daysGrid/reducer';
 
 const rootReducer = combineReducers({
-  daysEvents,
+  daysGrid,
 });
 
 export default rootReducer;
