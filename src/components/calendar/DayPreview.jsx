@@ -6,7 +6,6 @@ import { calculateColumns } from '../../store/daysGrid/actions';
 
 function DayPreview(props) {
 
-
   const {day, days} = props;
   const [newDays, setNewDays] = useState(days);
   const [viewDay, setView] = useState(true);
@@ -24,7 +23,7 @@ function DayPreview(props) {
     newDays.push(props.day);
     setNewDays(newDays);
     props.calculateColumns('previewColumnsTemplate', newDays);
-  }, [props.day.events])
+  }, [props.day.events,props.day.orientation])
 
   const setDayView = () => {
     setView(true);
@@ -44,7 +43,7 @@ function DayPreview(props) {
         </div>
       </div>
       {viewDay ? 
-      <WeekdayTab events={day.events}/>:
+      <WeekdayTab orientation={day.orientation} events={day.events}/>:
       <CalendarGrid days={newDays} columnsTemplate={props.columnsTemplate}/>
       
     }

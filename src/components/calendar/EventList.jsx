@@ -11,6 +11,7 @@ function showEvents(events = []) {
         bgImage={elem.bgImage}
         tags={elem.tags}
         lastChild={events.length % 2 === 0 ? 'unset' : 'c'}
+
       />
     )
   })
@@ -20,10 +21,40 @@ function showEvents(events = []) {
 
 function EventList(props) {
   return (
-    <DayEvents elemCount={props.events ? props.events.length : 0}>
+    <DayEvents orientation={props.orientation} elemCount={props.events ? props.events.length : 0}>
       {showEvents(props.events)}
     </DayEvents>
   )
+}
+
+const createElementsGrid = (orientation, elemCount) => {
+  
+  if(orientation && orientation==='vertical'){
+    if((elemCount>1) && (elemCount % 2 !== 0)) {
+      return `
+      "a b"
+      "c c"
+      `
+    }
+    if(elemCount>0) {
+      return `
+      "a"
+      "b"
+      `
+    }
+  }
+  else{
+    if(elemCount>1){
+      if(elemCount % 2 === 0){
+        return `"a b"`
+      }
+      else{
+        return `"a c"
+        "b c"`
+      }
+    }
+  }
+  return  "initial"
 }
 
 const DayEvents = styled.div`
@@ -33,12 +64,7 @@ const DayEvents = styled.div`
     border-radius: 25px;
     overflow: hidden;
     grid-template-areas: ${props =>
-    props.elemCount > 1 ?
-      props.elemCount % 2 === 0 ?
-        `"a b"`
-        : `"a c"
-          "b c"`
-      : `initial`
+    createElementsGrid(props.orientation,props.elemCount)
   };
 `;
 

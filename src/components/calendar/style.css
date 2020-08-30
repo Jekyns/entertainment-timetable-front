@@ -310,3 +310,7 @@ button.controls__addEvent-btn::before {
   color:#000;
   display: flex;
 }
+
+.controls__leftSide {
+  display: flex;
+}

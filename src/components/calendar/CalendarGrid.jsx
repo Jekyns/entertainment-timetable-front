@@ -16,7 +16,7 @@ function showTabs({days, editDay}) {
     for (let j = 0; j < 7; j++) {//row cells(columns)
       const eventWeekadayTab = days.filter((elem) => {
         if ((i === elem.row) && (j === elem.column)) {
-          cells.push(<WeekdayTab key={`${elem.title}${i}${j}`} events={elem.events} row={i} column={j} editDay={editDay}/>);
+          cells.push(<WeekdayTab key={`${elem.title}${i}${j}`} orientation={elem.orientation} events={elem.events} row={i} column={j} editDay={editDay}/>);
           return false
         }
         return true

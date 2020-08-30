@@ -14,12 +14,12 @@ const initialState = {
           bgImage: "https://gamemag.ru/images/cache/News/News112659/7898e18229-2_1390x600.jpg",
           tags: [
             {
-              text: "You",
+              text: "GameMaker",
               bgColor: "#fff",
               color: "#333",
             },
             {
-              text: "Dead",
+              text: "Studio",
               bgColor: "#cb0b0e",
               color: "#fff",
             }
@@ -37,12 +37,12 @@ const initialState = {
           bgImage: "https://i.ytimg.com/vi/3GG3LCbkj1s/maxresdefault.jpg",
           tags: [
             {
-              text: "Hello",
+              text: "Devolver",
               bgColor: "#000",
               color: "#fff"
             },
             {
-              text: "Sleeper",
+              text: "Digital",
               bgColor: "yellow",
               color: "#000",
             }
@@ -54,6 +54,7 @@ const initialState = {
       number: 0,
       row: 2,
       column: 3,
+      orientation: 'vertical',
       events: [
         {
           title: "Kamisama Hajimemashita",
@@ -166,6 +167,7 @@ const initialState = {
       number: 0,
       row: 1,
       column: 3,
+      orientation: 'vertical',
       events: [
         {
           title: "Spice and Wolf",
@@ -572,7 +574,6 @@ const setDay = (state, action) => {
 
 const calculateColumns = (state, action) => {
   const maxEventsInColumn = {};
-  debugger
   action.days.map((elem) => {
     if (maxEventsInColumn[elem.column]) {
       if (elem.events.length > maxEventsInColumn[elem.column].length)
@@ -586,7 +587,6 @@ const calculateColumns = (state, action) => {
   for (let i = 0; i < 7; i++) {//i - count colums
     columnsTemplateCss += getColumnWidth(maxEventsInColumn[i]);
   }
-  debugger
   return {
     ...state,
     [action.name]: columnsTemplateCss

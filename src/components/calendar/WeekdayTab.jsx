@@ -3,10 +3,10 @@ import styled from 'styled-components';
 import TagList from './TagList';
 import EventList from './EventList';
 
-function WeekdayTab({events, expanded, row, column, editDay}) {
+function WeekdayTab({events, expanded, row, column, editDay, orientation}) {
 
   const onClick = () => {
-    editDay({ row, column, events});
+    editDay({ row, column, events,orientation});
   }
 
   return (
@@ -17,7 +17,7 @@ function WeekdayTab({events, expanded, row, column, editDay}) {
             1
           </DayNumber>
         </TabHead>
-        <EventList events={events} />
+        <EventList orientation={orientation} events={events} />
       </div>
     </TableData>
   )

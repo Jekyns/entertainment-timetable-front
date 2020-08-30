@@ -9,6 +9,7 @@ function CreateEventsForm(props) {
   const initTag = { text: '', bgColor: '', color: '' };
   const initEvent = { title: '', bgImage: '', tags: [initTag] };
   const [events, setEvents] = useState([initEvent]);
+  const [orientation, setOrientation] = useState('');
   const [previewDay, setPreviewDay] = useState({});
   // const [editableTab, setEditableTab] = React.useState(events[events.length].tags[events[events.length].tags[]]);
 
@@ -18,7 +19,8 @@ function CreateEventsForm(props) {
        return ((day.row === row) && (day.column === column));
      })
      setPreviewDay(newPreviewDay[0]);
-   }, [props.row,props.column])
+     setOrientation(props.orientation);
+   }, [props.row,props.column, props.orientation])
 
   useEffect(()=>{
     if(props.events){
@@ -83,6 +85,15 @@ function CreateEventsForm(props) {
     setEvents(newEvents);
   }
 
+  const changeOrientation = () => {
+    if(orientation === 'vertical'){
+      setOrientation('horizontal');
+    }
+    else{
+      setOrientation('vertical');
+    }
+  }
+
   // const saveTag = (eventCount) => {
   //   const newEvents = [...events];
   //   const arrayofTags = newEvents[eventCount].tags;
@@ -94,6 +105,7 @@ function CreateEventsForm(props) {
     props.setDay({
       row:props.row,
       column: props.column,
+      orientation: orientation || props.orientation,
       events: events,
     });
   }
@@ -114,6 +126,9 @@ function CreateEventsForm(props) {
           <div className="controls__addEvent">
             <button className="controls__addEvent-btn controls__button" onClick={addEvent}>Добавить </button>
           </div>
+          <div className="controls__addEvent">
+            <button className="controls__addEvent-btn controls__button" onClick={changeOrientation}>Поменять ориентацию </button>
+          </div>
         </div>
         <div className="controls__rightSide">
           <div className="controls__discard">
@@ -126,7 +141,7 @@ function CreateEventsForm(props) {
       </div>
       </div>
       <div className="modal__preview">
-        <DayPreview day={{row, column,events}}/>
+        <DayPreview day={{row, column,events, orientation: orientation || previewDay && previewDay.orientation}}/>
       </div>
     </div>
   );
