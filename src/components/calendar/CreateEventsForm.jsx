@@ -29,7 +29,10 @@ function CreateEventsForm(props) {
     if(props.events){
       const incammingEvents = props.events;
       const newEvents = incammingEvents.map((event)=>{
-        return {...event};
+        return {
+          ...event,
+          tags: [...event.tags],
+        };
       })
       setEvents(newEvents);
     }

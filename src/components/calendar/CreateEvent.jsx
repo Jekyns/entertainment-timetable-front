@@ -57,7 +57,12 @@ function CreateEvent(props) {
         </div>
       </div>
       <div className="calendar__modal-controls">
-        <CreateTag changeTag={changeTag} color={props.tags[editableTab].color} bgColor={props.tags[editableTab].bgColor} text={props.tags[editableTab].text} />
+        <CreateTag
+          changeTag={changeTag}
+          color={props.tags[editableTab] && props.tags[editableTab].color}
+          bgColor={props.tags[editableTab] && props.tags[editableTab].bgColor}
+          text={ props.tags[editableTab] && props.tags[editableTab].text}
+        />
         <div className="controls__addTag">
           <button className="controls__button controls__addTag-btn" onClick={saveTag}>Add new tag</button>
         </div>
