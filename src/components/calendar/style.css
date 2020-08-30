@@ -116,6 +116,7 @@ h1.date__year-h1 {
   padding: 25px;
   border-radius: 25px;
   overflow: scroll;
+  margin: 0 25px;
 }
 
 .tags__tag {
@@ -183,21 +184,33 @@ label.calendar__modal-label {
   border-radius: 7px;
   cursor: pointer;
 }
-
-.controls__save-btn {
-  background: rgb(23, 114, 218);
-}
-
 .controls__discard-btn {
   background: #b44a4a;
   margin-right: 10px;
 }
 
-.controls__addEvent-btn {
+.controls__button{
   background: #588fcc;
+}
+
+.controls__addEvent-btn {
   display: block;
   position: relative;
   padding-left: 30px;
+}
+
+.controls__changeOrientation-btn {
+  display: flex;
+  position: relative;
+  margin-left: 10px;
+}
+
+.controls__button-icon{
+  stroke: #fff;
+  fill: #fff;
+  width: 15px;
+  height: 15px;
+  margin-right: 5px;
 }
 
 button.controls__addEvent-btn::after {
@@ -313,4 +326,35 @@ button.controls__addEvent-btn::before {
 
 .controls__leftSide {
   display: flex;
+  margin-right: 50px;
+}
+.preview__tabs-icon {
+  width: 25px;
+  height: 25px;
+}
+.preview__tabs {
+  color: #000;
+  display: flex;
+  padding: 0 20px;
+}
+
+.preview-tab {
+ padding: 20px;
+ border-radius: 25px 25px 0 0;
+ background: #23141f1f;
+ margin-right: 15px;
+ cursor: pointer;
+}
+.grid-wrapper {
+  background: #23141f;
+}
+
+.modal__controls {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  top: 75%;
+  background: #fff;
+  padding: 20px;
 }

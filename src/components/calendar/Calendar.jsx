@@ -39,7 +39,7 @@ function Calendar(props) {
           <h2 className="head__description-h2">Новые фильмы в кино</h2>
         </div>
       </div>
-      <CalendarGrid days={days} editDay={editDay} columnsTemplate={props.columnsTemplate} />
+      <CalendarGrid days={days} editDay={editDay} columnsTemplate={props.columnsTemplate} withDayOfWeek={true} />
       <WeekDayTabModal dayForEdit={dayForEdit} closeModal={closeModal} />
     </div>
   )

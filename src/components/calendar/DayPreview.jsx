@@ -1,8 +1,10 @@
-import React,{useState, useEffect} from 'react'
+import React,{useState, useEffect, Component} from 'react'
 import WeekdayTab from './WeekdayTab';
 import CalendarGrid from './CalendarGrid';
 import {connect} from 'react-redux';
 import { calculateColumns } from '../../store/daysGrid/actions';
+import {ReactComponent as GridIcon} from '../../images/icons/grid.svg';
+import {ReactComponent as ElementIcon} from '../../images/icons/elem.svg';
 
 function DayPreview(props) {
 
@@ -35,16 +37,18 @@ function DayPreview(props) {
   return (
     <div className="modal__preview">
       <div className="preview__tabs">
-        <div className="preview__tabs-fullscreen">
-          <span className="preview__tabs-fullscreen-span" onClick={setGlobalView}>Fullscreen</span>
+        <div className="preview__tabs-fullscreen preview-tab" onClick={setGlobalView}>
+          <GridIcon className="preview__tabs-icon" />
         </div>
-        <div className="preview__tabs-day">
-          <span className="preview__tabs-day-span" onClick={setDayView}>Day</span>
+        <div className="preview__tabs-day preview-tab" onClick={setDayView}>
+          <ElementIcon className="preview__tabs-icon"/>
         </div>
       </div>
       {viewDay ? 
       <WeekdayTab orientation={day.orientation} events={day.events}/>:
-      <CalendarGrid days={newDays} columnsTemplate={props.columnsTemplate}/>
+      <div className="grid-wrapper">
+        <CalendarGrid days={newDays} columnsTemplate={props.columnsTemplate} padding={'false'}/>
+      </div>
       
     }
     </div>

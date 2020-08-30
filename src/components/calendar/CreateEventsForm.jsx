@@ -1,9 +1,12 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, Component} from 'react';
 import CreateEvent from './CreateEvent';
 import CreateTag from './CreateTag';
 import { setDay } from '../../store/daysGrid/actions';
 import { connect } from 'react-redux';
 import DayPreview from './DayPreview';
+// import { ReplayIcon as React.component } from '../../images/icons/replay.svg';
+import {ReactComponent as ReplayIcon} from '../../images/icons/replay.svg';
+
 
 function CreateEventsForm(props) {
   const initTag = { text: '', bgColor: '', color: '' };
@@ -126,8 +129,11 @@ function CreateEventsForm(props) {
           <div className="controls__addEvent">
             <button className="controls__addEvent-btn controls__button" onClick={addEvent}>Добавить </button>
           </div>
-          <div className="controls__addEvent">
-            <button className="controls__addEvent-btn controls__button" onClick={changeOrientation}>Поменять ориентацию </button>
+          <div className="controls__changeOrientation">
+            <button className="controls__changeOrientation-btn controls__button" onClick={changeOrientation}>
+            <ReplayIcon  className="controls__button-icon"/>
+            Поменять ориентацию
+            </button>
           </div>
         </div>
         <div className="controls__rightSide">
