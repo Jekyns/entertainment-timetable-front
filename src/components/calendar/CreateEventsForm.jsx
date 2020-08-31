@@ -45,11 +45,13 @@ function CreateEventsForm(props) {
       htmlEvents.push(
       <CreateEvent
         key={`${elem.bgImage}${i}`}
-        count={i} {...elem}
+        count={i} 
         onChange={onChange}
         changeTag={changeTag}
         saveTag={saveTag}
         deleteTag={deleteTag}
+        changeImageSettings={changeImageSettings}
+        {...elem}
       />)
     })
     return htmlEvents;
@@ -59,6 +61,16 @@ function CreateEventsForm(props) {
     const { name, value } = e.target;
     const newEvents = [...events];
     newEvents[e.count][name] = value;
+    setEvents(newEvents);
+  }
+
+  const changeImageSettings = (e) => {
+    const { name, value } = e.target;
+    const newEvents = [...events];
+    newEvents[e.count].imageSettings = {
+      ...newEvents[e.count].imageSettings,
+      [name]: value,
+    };
     setEvents(newEvents);
   }
 

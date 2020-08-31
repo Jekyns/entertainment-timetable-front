@@ -5,7 +5,11 @@ import styled from 'styled-components'
 function DayEvent(props) {
   return (
     <>
-      <Event bgImage={props.bgImage} lastChild={props.lastChild}>
+      <Event
+        bgImage={props.bgImage}
+        imageSettings={props.imageSettings}
+        lastChild={props.lastChild}
+      >
         <div className="event__title">
           <span className="event__title-span">{props.title}</span>
         </div>
@@ -31,6 +35,13 @@ const Event = styled.div`
     &:first-child {
       grid-area: unset;
     }
+  ${props => props.imageSettings ?
+    `${props.imageSettings.bgSize ? `background-size: ${props.imageSettings.bgSize};` : 'background-size: cover;'}
+    ${props.imageSettings.bgPositionX ? `background-position-x: ${props.imageSettings.bgPositionX}${props.imageSettings.bgPositionUnit || 'px'};` : ''}
+    ${props.imageSettings.bgPositionY ? `background-position-y: ${props.imageSettings.bgPositionY}${props.imageSettings.bgPositionUnit || 'px'};` : ''}
+    ${props.imageSettings.bgRepeat ? `background-repeat: ${props.imageSettings.bgRepeat};` : 'background-repeat: no-repeat;'}
+    `
+    : ''}
 `;
 
 

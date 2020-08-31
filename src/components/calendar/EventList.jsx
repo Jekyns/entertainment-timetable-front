@@ -7,11 +7,11 @@ function showEvents(events = []) {
   events.map((elem) => {
     dayEvents.push(
       <DayEvent
+        {...elem}
         title={elem.title}
         bgImage={elem.bgImage}
         tags={elem.tags}
         lastChild={events.length % 2 === 0 ? 'unset' : 'c'}
-
       />
     )
   })
