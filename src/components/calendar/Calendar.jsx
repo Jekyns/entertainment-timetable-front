@@ -6,7 +6,8 @@ import CalendarGrid from './CalendarGrid';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import WeekDayTabModal from './WeekDayTabModal';
-import { calculateColumns } from '../../store/daysGrid/actions';
+import { calculateColumns, setGridSettings } from '../../store/daysGrid/actions';
+import ImageSettings from './ImageSettings';
 
 function Calendar(props) {
   const [dayForEdit, setDayForEdit] = React.useState({});
@@ -20,12 +21,17 @@ function Calendar(props) {
     setDayForEdit({});
   }
 
+  const changeImageSettings = (e) => {
+    const { name, value } = e.target;
+    props.setGridSettings({ [name]: value });
+  }
+
   React.useEffect(() => {
     props.calculateColumns('columnsTemplate', props.days);
   }, [])
   const { days } = props;
   return (
-    <div className="calendar">
+    <CalendarBody settings={props.settings}>
       <div className="calendar__head">
         <div className="head__date">
           <div className="date__month">
@@ -38,12 +44,31 @@ function Calendar(props) {
         <div className="head__description">
           <h2 className="head__description-h2">Новые фильмы в кино</h2>
         </div>
+        <ImageSettings
+          imageSettings={props.settings || {}}
+          changeImageSettings={changeImageSettings}
+          withImageInput
+        />
       </div>
       <CalendarGrid days={days} editDay={editDay} columnsTemplate={props.columnsTemplate} withDayOfWeek={true} />
       <WeekDayTabModal dayForEdit={dayForEdit} closeModal={closeModal} />
-    </div>
+    </CalendarBody>
   )
 }
+
+const CalendarBody = styled.div`
+    background: linear-gradient(0deg, #23141f, #281323, #22131e, #0000),
+    linear-gradient(90deg, #23141f,#23141f, rgb(34 101 163 / 0%)),
+     ${props => props.settings && props.settings.imageUrl ? `url(${props.settings.imageUrl})` : 'url(/static/media/bg.29f325ea.jpg);'};
+    background-repeat: ${props => props.settings && props.settings.bgRepeat ? props.settings.bgRepeat : 'no-repeat'};
+    background-position-x:  ${props => props.settings && props.settings.bgPositionX ?
+    `${props.settings.bgPositionX}${props.settings.bgPositionUnit || 'px'}` :
+    'right'};
+    background-position-y:  ${props => props.settings && props.settings.bgPositionY ?
+    `${props.settings.bgPositionY}${props.settings.bgPositionUnit || 'px'}` :
+    'top'};
+    background-size:  ${props => props.settings && props.settings.bgSize ? props.settings.bgSize : 'auto'};
+`;
 
 
 
@@ -51,11 +76,14 @@ const mapStateToProps = (state) => {
   return {
     days: state.daysGrid.days,
     columnsTemplate: state.daysGrid.columnsTemplate,
+    backgroundSettings: state.daysGrid.backgroundSettings,
+    settings: state.daysGrid.settings,
   };
 };
 
 const mapDispatchToProps = {
   calculateColumns,
+  setGridSettings
 };
 
 

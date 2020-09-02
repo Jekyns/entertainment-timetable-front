@@ -2,7 +2,7 @@ import { daysGrid } from '../actionTypes';
 
 const initialState = {
   columnsTemplate: '',
-  previewcolumnsTemplate: '',
+  previewColumnsTemplate: '',
   days: [
     {
       number: 0,
@@ -606,6 +606,8 @@ const reducer = (state = initialState, action) => {
       return deleteUser(state, action);
     case daysGrid.CALC_COLUMNS:
       return calculateColumns(state, action);
+    case daysGrid.SET_GRID_SETTINGS:
+      return {...state, settings:{...state.settings,...action.settings}}
     default:
       return state;
   }

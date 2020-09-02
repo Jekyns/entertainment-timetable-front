@@ -26,3 +26,10 @@ export function calculateColumns(name,days) {
     days: days,
   };
 }
+
+export function setGridSettings(settings) {
+  return {
+    type: daysGrid.SET_GRID_SETTINGS,
+    settings: settings,
+  }
+}

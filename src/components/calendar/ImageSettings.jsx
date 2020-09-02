@@ -1,6 +1,7 @@
 import React, { useState }  from 'react'
-import { Select, MenuItem, TextField } from '@material-ui/core';
-function ImageSettings({ imageSettings, changeImageSettings}) {
+import { Select, MenuItem, TextField, Box } from '@material-ui/core';
+import styled from 'styled-components';
+function ImageSettings({ imageSettings, changeImageSettings,withImageInput}) {
   const [openedSelect, setOpenedSelect] = useState('');
 
   const openSelect = (selectName) => {
@@ -12,7 +13,18 @@ function ImageSettings({ imageSettings, changeImageSettings}) {
   }
 
   return (
-    <>
+    <BoxOfSettings className="settings-image">
+    {withImageInput ? 
+        <TextField
+        id="standard-basic"
+        label="imageUrl"
+        name="imageUrl"
+        width='150px'
+        value={imageSettings && imageSettings.imageUrl}
+        onChange={changeImageSettings}
+        // inputProps={{ style: { color: 'white', borderColor:'white'}}}
+      />  : ''
+  }
       <Select
         labelId="demo-controlled-open-select-label"
         id="demo-controlled-open-select"
@@ -35,6 +47,7 @@ function ImageSettings({ imageSettings, changeImageSettings}) {
         width='50px'
         value={imageSettings && imageSettings.bgPositionX}
         onChange={changeImageSettings}
+        size="small"
       />
       <TextField
         id="standard-basic"
@@ -43,6 +56,7 @@ function ImageSettings({ imageSettings, changeImageSettings}) {
         width='50px'
         value={imageSettings && imageSettings.bgPositionY}
         onChange={changeImageSettings}
+        size="small"
       />
       <Select
         labelId="demo-controlled-open-select-label"
@@ -71,8 +85,25 @@ function ImageSettings({ imageSettings, changeImageSettings}) {
         <MenuItem value="cover">  <span className="bgsettings__select-item">cover</span></MenuItem>
         <MenuItem value="contain"> <span className="bgsettings__select-item">contain</span></MenuItem>
       </Select>
-    </>
+    </BoxOfSettings>
   )
 }
+
+const BoxOfSettings = styled(Box)`
+
+&& > div > div{
+  color:#fff;
+}
+&& > div > label{
+  color:#fff;
+}
+
+&& > div:before{
+  border-color:#fff;
+}
+&&& > div > div:before, div:hover{
+  border-color:#fff;
+}
+`
 
 export default ImageSettings

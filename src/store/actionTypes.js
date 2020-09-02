@@ -3,5 +3,6 @@ export const daysGrid = {
   DELETE_EVENT: 'DELETE_REQUEST/RequestHisory',
   SET_EVENTS: 'SET_HISTORY/RequestHisory',
   SET_DAY: 'SET_DAY/daysGrid',
-  CALC_COLUMNS:'CALC_COLUMNS/daysGrid'
+  CALC_COLUMNS:'CALC_COLUMNS/daysGrid',
+  SET_GRID_SETTINGS: 'SET_GRID_SETTINGS/daysGrid',
 };
