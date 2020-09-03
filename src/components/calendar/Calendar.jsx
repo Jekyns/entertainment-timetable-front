@@ -45,7 +45,10 @@ function Calendar(props) {
           <h2 className="head__description-h2">Новые фильмы в кино</h2>
         </div>
         <ImageSettings
-          imageSettings={props.settings || {}}
+          imageSettings={props.settings || {
+            bgSize: 'auto'
+          }}
+          themeColor='white'
           changeImageSettings={changeImageSettings}
           withImageInput
         />
