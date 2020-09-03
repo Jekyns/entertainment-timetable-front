@@ -46,7 +46,7 @@ function Calendar(props) {
         </div>
         <ImageSettings
           imageSettings={props.settings || {
-            bgSize: 'auto'
+            bgSize: 'contain',
           }}
           themeColor='white'
           changeImageSettings={changeImageSettings}
@@ -60,9 +60,9 @@ function Calendar(props) {
 }
 
 const CalendarBody = styled.div`
-    background: linear-gradient(0deg, #23141f, #281323, #22131e, #0000),
-    linear-gradient(90deg, #23141f,#23141f, rgb(34 101 163 / 0%)),
-     ${props => props.settings && props.settings.imageUrl ? `url(${props.settings.imageUrl})` : 'url(/static/media/bg.29f325ea.jpg);'};
+    background: linear-gradient(0deg,#23141f,#281323,#22131e,#23141f, #23141f,#23141f,#28132300,#00000000),
+    linear-gradient(90deg, #23141f, rgb(34 101 163 / 0%)),
+     ${props => props.settings && props.settings.imageUrl ? `url(${props.settings.imageUrl})` : 'url(https://wallpapercave.com/wp/wp1963528.jpg);'};
     background-repeat: ${props => props.settings && props.settings.bgRepeat ? props.settings.bgRepeat : 'no-repeat'};
     background-position-x:  ${props => props.settings && props.settings.bgPositionX ?
     `${props.settings.bgPositionX}${props.settings.bgPositionUnit || 'px'}` :
@@ -70,7 +70,7 @@ const CalendarBody = styled.div`
     background-position-y:  ${props => props.settings && props.settings.bgPositionY ?
     `${props.settings.bgPositionY}${props.settings.bgPositionUnit || 'px'}` :
     'top'};
-    background-size:  ${props => props.settings && props.settings.bgSize ? props.settings.bgSize : 'auto'};
+    background-size:  ${props => props.settings && props.settings.bgSize ? props.settings.bgSize : 'contain'};
 `;
 
 
